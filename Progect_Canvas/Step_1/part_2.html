@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .mybox1 {
+            /* background-color: yellow; */
+            width: 300px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        canvas {
+            background-color: black;
+        }
+    </style>
+</head>
+
+<body>
+
+
+    <div class="mybox1">
+        <canvas id="game_1" width="300" height="300"></canvas>
+    </div>
+
+    <script>
+        const canvas = window.document.getElementById("game_1"); //cnv
+        let context = canvas.getContext('2d');
+
+        // console.log(context);
+        // context.fillStyle = 'dimgrey';
+        // context.fillRect(10, 10, canvas.width - 20, canvas.height - 20);
+
+        // context.fillStyle = 'red';
+        // context.font = "30px Arial";
+        // context.fillText("My Game", 20, 50);
+
+
+        // context.moveTo(0, 50);
+        // context.lineTo(200, 200);
+
+        // context.stroke();
+
+   
+        // // координатная сетка
+
+        // context.strokeStyle = '#ff0000';
+        // for (let x = 0; x < canvas.width; x += 10) {
+        //     context.beginPath();
+        //     context.moveTo(x, 0);
+        //     context.lineTo(x, canvas.height);
+        //     //применяем тернарный оператор
+        //     context.lineWidth = (x % 50 == 0) ? 0.5 : 0.25;
+        //     context.stroke();
+        // }
+        // console.log(canvas.height);
+        // for (let y = 0; y < canvas.height; y += 10) {
+        //     context.beginPath();
+        //     context.moveTo(0, y);
+        //     context.lineTo(canvas.width, y);
+        //     context.lineWidth = (y % 50 == 0) ? 0.5 : 0.25;
+        //     context.stroke();
+        // }
+
+        // // перенос в функцию
+
+        // function draw_grid(ctx, minor, major, stroke, fill) {
+        //     minor = minor || 10;
+        //     major = major || minor * 5;
+        //     stroke = stroke || '#ff0000';
+        //     fill = fill || '#009900';
+
+        //     ctx.save();
+        //     ctx.strokeStyle = stroke;
+        //     ctx.fillStyle = fill;
+
+        //     let width = ctx.canvas.width, height = ctx.canvas.height;
+
+        //     for (let x = 0; x < width; x += minor) {
+        //         context.beginPath();
+        //         context.moveTo(x, 0);
+        //         context.lineTo(x, height);
+        //         //устанавливаем толщину линии (тернарный оператор)
+        //         context.lineWidth = (x % major == 0) ? 0.5 : 0.25;
+        //         context.stroke();
+        //     }
+        //     for (let y = 0; y < height; y += minor) {
+        //         context.beginPath();
+        //         context.moveTo(0, y);
+        //         context.lineTo(width, y);
+        //         context.lineWidth = (y %  major == 0) ? 0.5 : 0.25;
+        //         context.stroke();
+        //     }
+        // }
+
+        // draw_grid(context,10);
+
+        //// Добавляю к функции вывод значений координат
+        function draw_grid(ctx, minor, major, stroke, fill) {
+            minor = minor || 10;
+            major = major || minor * 5;
+            stroke = stroke || '#ff0000';
+            fill = fill || '#009900';
+
+            ctx.save();
+            ctx.strokeStyle = stroke;
+            ctx.fillStyle = fill;
+
+            let width = ctx.canvas.width, height = ctx.canvas.height;
+
+            for (let x = 0; x < width; x += minor) {
+                context.beginPath();
+                context.moveTo(x, 0);
+                context.lineTo(x, height);
+                //тернарный оператор
+                context.lineWidth = (x % major == 0) ? 0.5 : 0.25;
+                context.stroke();
+                if(x%major == 0) ctx.fillText(x,x,10);
+
+            }
+            for (let y = 0; y < height; y += minor) {
+                context.beginPath();
+                context.moveTo(0, y);
+                context.lineTo(width, y);
+                context.lineWidth = (y %  major == 0) ? 0.5 : 0.25;
+                context.stroke();
+                if(y%major == 0) ctx.fillText(y,0,y+10);
+            }
+        }
+
+        // draw_grid(context,10);
+        // draw_grid(context, 15, 45, 'red','yellow');
+        draw_grid(context, 5,30, 'white','red');
+    </script>
+
+</body>
+
+</html>

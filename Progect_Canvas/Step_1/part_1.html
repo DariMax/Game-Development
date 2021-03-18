@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Canvas</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: sans-serif;
+        }
+
+        canvas {
+            width: 400px;
+            height: 400px;
+            background-color: black;
+        }
+    </style>
+</head>
+
+<body>
+    <canvas id="greed"></canvas>
+    <script>
+        const canvas = document.getElementById('greed');
+        let context = canvas.getContext('2d');
+
+        //цвет линии
+        context.strokeStyle = 'red';
+        //цвет заливки
+        context.fillStyle = 'green';
+        // ширина линии
+        context.lineWidth = 5;
+        context.rect(50, 30, 150, 75);
+        // Штрих
+        context.stroke();
+        // Заливка
+        context.fill();
+
+        //Текст
+        context.fillStyle = 'red';
+        context.font = "24px Arial";
+        context.fillText("My Game", 50, 20);
+
+        //Рисуем прямые линии
+        context.strokeStyle = 'white';
+        context.lineWidth = 2;
+
+        //задаем начало
+        context.beginPath();
+        context.moveTo(0, 0);
+        context.lineTo(450, 250);
+        context.stroke();
+
+    </script>
+</body>
+
+</html>
